@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "538917837345",
+    "project_id": "appointmap-bae78",
+    "storage_bucket": "appointmap-bae78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538917837345:android:515d5a2536bd8391362160",
+        "android_client_info": {
+          "package_name": "com.example.appointmap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNmbpYsF9V6S7aTOKcspIVFT44ApsCI08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
