@@ -1,7 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
+
+def apiKeyPropertiesFile = rootProject.file("local.properties")
+def apiKeyProperties = new Properties()
+apiKeyProperties.load(new FileInputStream(apiKeyPropertiesFile))
 
 android {
     namespace 'com.example.appointmap'
@@ -15,6 +21,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "PLACES_API_KEY", apiKeyProperties['PLACES_API_KEY'])
     }
 
     buildTypes {
@@ -45,11 +53,14 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
 
 
-    //구글맵
+    // 구글맵
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-location:19.0.1'
 
+    // 구글맵 장소 찾기
+    implementation 'com.google.android.libraries.places:places:2.5.0'
 }
+
 
 
 

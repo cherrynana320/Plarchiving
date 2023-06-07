@@ -5,11 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,7 +48,7 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         // 1. 읽기
-        markersRef.addValueEventListener(new ValueEventListener( ) {
+        markersRef.addValueEventListener( new ValueEventListener( ) {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // 경로의 전체 내용을 읽고 변경사항을 수신대기함
@@ -81,21 +83,26 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         // 2. 쓰기
-        EditText et_latitude = findViewById(R.id.et_latitude);
-        EditText et_longitude= findViewById(R.id.et_longitude);
-        EditText et_title = findViewById(R.id.et_title);
-        Button btn_save = findViewById(R.id.btn_save);
+//        EditText et_latitude = findViewById(R.id.et_latitude);
+//        EditText et_longitude= findViewById(R.id.et_longitude);
+//        EditText et_title = findViewById(R.id.et_title);
+//        Button btn_save = findViewById(R.id.btn_save);
 
-        btn_save.setOnClickListener(new View.OnClickListener(){
+        ImageButton btn_add = findViewById(R.id.btn_add);
+
+        btn_add.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 // 입력값 변수에 담기
-                double str_latitude = Double.parseDouble(et_latitude.getText().toString()); // String -> Double로 형 변환
-                double str_longitude = Double.parseDouble(et_longitude.getText().toString());
-                String str_title = et_title.getText().toString();
+//                double str_latitude = Double.parseDouble(et_latitude.getText().toString()); // String -> Double로 형 변환
+//                double str_longitude = Double.parseDouble(et_longitude.getText().toString());
 
-                saveMarkerData(str_latitude,str_longitude,str_title);
+                Intent intent = new Intent(GmapActivity.this, SearchActivity.class);
+
+                // 다른 액티비티로 이동
+                startActivity(intent);
+
             }
         });
 
@@ -104,7 +111,6 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
-
 
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
@@ -116,14 +122,6 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    // ** 사용자가 저장 버튼을 눌러 db에 마커데이터를 저장.
-    private void saveMarkerData(double latitude, double longitude, String title) {
-        //DatabaseReference markersRef = database.getReference("markers");
-        String markerId = markersRef.push().getKey();
-
-        MarkerData markerData = new MarkerData(markerId, latitude, longitude, title);
-        markersRef.child(markerId).setValue(markerData); // db에 저장.
-    }
 }
 
 
