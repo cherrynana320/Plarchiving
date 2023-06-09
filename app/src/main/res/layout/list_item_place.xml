@@ -8,11 +8,15 @@
     <TextView
         android:id="@+id/tv_shortAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="15sp"/>
 
     <TextView
         android:id="@+id/tv_longAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="#5E6B45"
+        android:textSize="12sp"/>
 
 </LinearLayout>

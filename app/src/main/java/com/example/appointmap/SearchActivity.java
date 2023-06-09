@@ -54,7 +54,6 @@ public class SearchActivity extends AppCompatActivity {
     // private ProgressBar progressBar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference markersRef = database.getReference("markers");// 파이어베이스 db
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +119,8 @@ public class SearchActivity extends AppCompatActivity {
                 .setSessionToken(sessionToken)
                 .setTypeFilter(TypeFilter.ESTABLISHMENT)
                 .setQuery(et_search.getText( ).toString( ))
+                .setCountry("KR")
                 .setLocationBias(bias)
-                .setCountries("KR")
                 .build( );
 
 
@@ -230,16 +229,13 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    // ** 사용자가 저장 버튼을 눌러 db에 마커데이터를 저장.
+    // ** 사용자가 add 버튼을 눌러 db에 마커 데이터를 저장.
     private void saveMarkerData(double latitude, double longitude, String title) {
-        //DatabaseReference markersRef = database.getReference("markers");
+        DatabaseReference markersRef = database.getReference("markers");
         String markerId = markersRef.push().getKey();
 
         MarkerData markerData = new MarkerData(markerId, latitude, longitude, title);
         markersRef.child(markerId).setValue(markerData); // db에 저장.
     }
-
-
-
 
 }

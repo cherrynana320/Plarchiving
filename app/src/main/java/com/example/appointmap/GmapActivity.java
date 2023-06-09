@@ -4,14 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,12 +18,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 public class GmapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -32,6 +31,8 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
     DatabaseReference markersRef = database.getReference("markers");// 파이어베이스 db
 
     GoogleMap googleMap;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
         // ** 지도
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.gmap);
+
 
         mapFragment.getMapAsync(this); //GoogleMap 인스턴스를 사용할 준비가 되면 트리거될 콜백 객체를 설정
         // 즉, Async라는 뜻은 비동기화 = 순서가 상관없이 이루어짐.
@@ -82,36 +84,21 @@ public class GmapActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
 
-        // 2. 쓰기
-//        EditText et_latitude = findViewById(R.id.et_latitude);
-//        EditText et_longitude= findViewById(R.id.et_longitude);
-//        EditText et_title = findViewById(R.id.et_title);
-//        Button btn_save = findViewById(R.id.btn_save);
-
-        ImageButton btn_add = findViewById(R.id.btn_add);
-
+        Button btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 // 입력값 변수에 담기
 //                double str_latitude = Double.parseDouble(et_latitude.getText().toString()); // String -> Double로 형 변환
-//                double str_longitude = Double.parseDouble(et_longitude.getText().toString());
 
                 Intent intent = new Intent(GmapActivity.this, SearchActivity.class);
-
-                // 다른 액티비티로 이동
-                startActivity(intent);
+                startActivity(intent); // 다른 액티비티로 이동
 
             }
         });
-
-
-
-
-
     }
 
+    // 지도 준비
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
         LatLng KOREA= new LatLng(37, 127);

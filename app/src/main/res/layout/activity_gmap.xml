@@ -5,28 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GmapActivity"
-    android:orientation="vertical">
-
-    <fragment
-        android:id="@+id/gmap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class='com.google.android.gms.maps.MapFragment'
-        android:layout_weight="1"/>
+    android:background="#FFFEDE"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_circle_24"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#D9EF95"
+            android:text="+"
+            android:textColor="@color/black" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
+        <fragment
+            android:id="@+id/gmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            class="com.google.android.gms.maps.MapFragment" />
+    </LinearLayout>
 
 
 </LinearLayout>

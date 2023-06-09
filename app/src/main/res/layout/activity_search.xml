@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFEDE">
 
     <EditText
         android:id="@+id/et_search"
@@ -14,13 +15,14 @@
         android:layout_margin="16dp"
         android:singleLine="true"
         android:imeOptions="actionSearch"
-        android:hint="Enter keyword"/>
+        android:hint="검색어"
+        android:backgroundTint="#5E6B45" />
 
 
     <ListView
         android:id="@+id/lv_places"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_margin="16dp"/>
 
 </LinearLayout>

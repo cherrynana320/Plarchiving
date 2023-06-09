@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFEDE">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appointmap"
+        android:layout_marginBottom="50dp"
+        android:textSize="40sp"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="이메일주소"
+        android:textSize="15sp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        android:textSize="15sp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#D9EF95"
+        android:text="로그인"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#EAF5BB"
+        android:text="회원가입"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="어포인트맵이 처음이신가요? \n 아이디(이메일), 비밀번호 입력 후 회원가입을 눌러주세요 :)"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:textSize="12sp"
+        android:textColor="#5E6B45"/>
+
+</LinearLayout>
