@@ -12,28 +12,102 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_add"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Archiving"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#FF9405" />
+
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반가워요"
+            android:textSize="13sp"
+            android:textColor="#5E6B45"
+            android:backgroundTint="#D9EF95"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="방문한 장소는 체크 박스로 관리해주세요 :)"
+            android:textSize="13sp"
+            android:textColor="#5E6B45" />
+
+        <ListView
+            android:id="@+id/lv_markers"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#D9EF95"
-            android:text="+"
-            android:textColor="@color/black" />
+            android:layout_marginTop="10dp"
+            android:background="#EAF5BB"
+            />
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_marginHorizontal="30dp"
+        android:layout_weight="6">
 
         <fragment
             android:id="@+id/gmap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"
-            class="com.google.android.gms.maps.MapFragment" />
+            class="com.google.android.gms.maps.MapFragment"
+            tools:layout="@layout/activity_gmap" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="40dp"
+            android:src="@drawable/heart_orange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="나"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="40dp"
+            android:src="@drawable/heart_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="150dp"
+            android:text="친구들"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:backgroundTint="#D9EF95"/>
     </LinearLayout>
 
 

@@ -69,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     // updateUI(user);
 
+                                    Intent intent = new Intent(LoginActivity.this, GmapActivity.class);
                                     // ** 액티비티 넘어가기
                                     Toast.makeText(LoginActivity.this, "반가워요 :)", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, GmapActivity.class);
                                     startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -135,10 +135,6 @@ public class LoginActivity extends AppCompatActivity {
             currentUser.reload( );
         }
     }
-
-
-
-
 
 
 }

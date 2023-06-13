@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +36,8 @@ import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -54,14 +55,16 @@ public class SearchActivity extends AppCompatActivity {
     // private ProgressBar progressBar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //String apiKey = BuildConfig.PLACES_API_KEY;
-        String apiKey = "AIzaSyAyzkxnFRqbC8Daa2x6Ahc9AIF3oXx2HgU";
+        String apiKey = BuildConfig.PLACES_API_KEY;
+        //String apiKey = "AIzaSyAyzkxnFRqbC8Daa2x6Ahc9AIF3oXx2HgU";
 
         // Android용 Places SDK를 초기화하고, Places.initialize()를 호출할 때 API 키를 전달합니다.
         if(!Places.isInitialized()){
@@ -166,8 +169,9 @@ public class SearchActivity extends AppCompatActivity {
                 if(latLng != null){
                     // Toast.makeText(SearchActivity.this, "LatLng : " + latLng, Toast.LENGTH_LONG).show();
                     // 위도, 데이터 intent에 담아서 보내기
-
-                    saveMarkerData(latLng.latitude, latLng.longitude, place.getName());
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String userEmail = user.getEmail();
+                    saveMarkerData(userEmail,latLng.latitude, latLng.longitude, place.getName());
 
                     Intent Intent = new Intent(SearchActivity.this, GmapActivity.class);
                     startActivity(Intent);
@@ -229,12 +233,13 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    // ** 사용자가 add 버튼을 눌러 db에 마커 데이터를 저장.
-    private void saveMarkerData(double latitude, double longitude, String title) {
+    // ** 사용자가 db에 마커 데이터를 저장.
+    private void saveMarkerData(String userEmail,double latitude, double longitude, String title) {
         DatabaseReference markersRef = database.getReference("markers");
         String markerId = markersRef.push().getKey();
 
-        MarkerData markerData = new MarkerData(markerId, latitude, longitude, title);
+        // MarkerData markerData = new MarkerData(markerId, latitude, longitude, title);
+        MarkerData markerData = new MarkerData(markerId,userEmail, latitude, longitude, title);
         markersRef.child(markerId).setValue(markerData); // db에 저장.
     }
 
